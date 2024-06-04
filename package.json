@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "set DEBUG=app & node app1.js",
+    "start": "set DEBUG=app & nodemon app1.js",
     "debug": "set DEBUG=* & node app1.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,7 +12,16 @@
   "license": "ISC",
   "dependencies": {
     "debug": "^4.3.5",
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.3"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "delay": 2000,
+    "env": {
+      "port": 4000
+    }
   }
 }
