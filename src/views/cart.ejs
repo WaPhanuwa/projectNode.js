@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .cart-item {
+            background-color: #fff;
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item h2 {
+            margin: 0 0 10px;
+            font-size: 1.8em;
+            color: #555;
+        }
+
+        .cart-item p {
+            margin: 5px 0;
+            color: #666;
+            font-size: 1em;
+        }
+
+        .cart-item .price {
+            font-size: 1.5em;
+            color: #007bff;
+        }
+
+        .cart-item .quantity {
+            font-size: 1em;
+            color: #333;
+        }
+
+        .remove-from-cart {
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.2s;
+        }
+
+        .remove-from-cart:hover {
+            background-color: #cc0000;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px 0;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .back-to-home {
+            display: block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1em;
+            transition: background-color 0.2s;
+        }
+
+        .back-to-home:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Shopping Cart</h1>
+        <% if (cart.length> 0) { %>
+            <% cart.forEach(function(item) { %>
+                <div class="cart-item">
+                    <div>
+                        <h2>
+                            <%= item.productName %>
+                        </h2>
+                        <p class="price">$<%= item.productPrice %>
+                        </p>
+                        <p class="quantity">Quantity: <%= item.quantity %>
+                        </p>
+                    </div>
+                    <form action="/remove-from-cart" method="post">
+                        <input type="hidden" name="productId" value="<%= item.productId %>">
+                        <button type="submit" class="remove-from-cart">Remove</button>
+                    </form>
+                </div>
+                <% }) %>
+                    <% } else { %>
+                        <p>Your cart is empty.</p>
+                        <% } %>
+                            <a href="/" class="back-to-home">Continue Shopping</a>
+    </div>
+    <footer>
+        &copy; 2024 Online Store. All rights reserved.
+    </footer>
+</body>
+
+</html>
